@@ -1,9 +1,9 @@
 const print = @import("std").debug.print;
 
 const models = @import("models.zig");
-const ui_utils = @import("ui_utils.zig");
-const run_move = @import("game_utils.zig").run_move;
-const has_moved = @import("game_utils.zig").has_moved;
+const ui_utils = @import("ui.zig");
+const run_move = @import("game.zig").run_move;
+const has_moved = @import("game.zig").has_moved;
 const BOARD_SIZE = @import("constants.zig").BOARD_SIZE;
 
 fn construct_board(state: *const models.State) [BOARD_SIZE][BOARD_SIZE]i8 {

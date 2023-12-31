@@ -1,7 +1,7 @@
 const std = @import("std");
 
 const models = @import("models.zig");
-const coords_in_range = @import("move_utils.zig").coords_in_range;
+const coords_in_range = @import("move.zig").coords_in_range;
 const coords_utils = @import("coords_utils.zig");
 const constants = @import("constants.zig");
 const safe_add = @import("int_utils.zig").safe_add;

@@ -6,13 +6,13 @@ const models = @import("models.zig");
 
 const print = std.debug.print;
 
-const print_welcome = @import("ui_utils.zig").print_welcome;
+const print_welcome = @import("ui.zig").print_welcome;
 
-const is_over = @import("game_utils.zig").is_over;
+const is_over = @import("game.zig").is_over;
 
-const move = @import("move_utils.zig").move;
+const move = @import("move.zig").move;
 
-const get_number = @import("ui_utils.zig").get_number;
+const get_number = @import("ui.zig").get_number;
 
 fn prompt_for_first_player() models.Player {
     print("Who goes first? (0 = Player, 1 = AI): ", .{});
