@@ -22,9 +22,9 @@ pub const State = struct {
     moves: std.ArrayList(Move),
     current_player: Player,
 
-    pub fn init(allocator: *const std.mem.Allocator, player: Player) State {
+    pub fn init(allocator: std.mem.Allocator, player: Player) State {
         return .{
-            .moves = std.ArrayList(Move).init(allocator.*),
+            .moves = std.ArrayList(Move).init(allocator),
             .current_player = player,
         };
     }

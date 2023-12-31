@@ -15,10 +15,8 @@ fn construct_board(state: *const models.State) [BOARD_SIZE][BOARD_SIZE]i8 {
             board[row][col] = 0;
             continue;
         }
-        print("passed null check!\n", .{});
         const player_idx = @intFromEnum(pos.?.owner);
         const val = state.idx_to_val[player_idx][pos.?.idx];
-        print("state.idx_to_val[{}][{}] = {}\n", .{ player_idx, pos.?.idx, val });
         switch (pos.?.owner) {
             models.Player.ai => board[row][col] = -@as(i8, val),
             models.Player.player => board[row][col] = val,

@@ -34,7 +34,6 @@ fn add_coords(coords: *const models.Coords, val: u3, player_idx: u1, state: *mod
         .idx = i.*,
     };
     state.idx_to_val[player_idx][i.*] = val;
-    std.debug.print("state.idx_to_val[{}][{}] = {}\n", .{ player_idx, i.*, val });
     i.* += 1;
 }
 
@@ -64,9 +63,12 @@ pub fn run_move(state: *models.State, pos: u5) void {
     const player_idx = @intFromEnum(state.current_player);
     const opponent_idx = player_idx ^ 1;
     const coords = coords_utils.pos_to_coords(pos);
+    if (coords_owner(coords, state) == null) {
+        add_coords(coords, 3, player_idx, state);
+        return;
+    }
     increment_coords(coords, player_idx, state);
     if (get_coords(coords, state) < 4) {
-        std.debug.print("stopped!\n", .{});
         return;
     }
     var q = std.fifo.LinearFifo(u5, .{ .Static = constants.BOARD_SIZE * constants.BOARD_SIZE }).init();

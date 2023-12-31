@@ -21,13 +21,13 @@ fn prompt_for_first_player() models.Player {
     }
 }
 
-fn get_state_based_on_first_player(player: models.Player, allocator: *const std.mem.Allocator) *models.State {
+fn get_state_based_on_first_player(player: models.Player, allocator: std.mem.Allocator) models.State {
     var state = models.State.init(allocator, player);
     move(&state);
-    return &state;
+    return state;
 }
 
-fn initialize_state(allocator: *const std.mem.Allocator) *models.State {
+fn initialize_state(allocator: std.mem.Allocator) models.State {
     const player = prompt_for_first_player();
     return get_state_based_on_first_player(player, allocator);
 }
@@ -39,11 +39,10 @@ pub fn main() void {
     defer arena.deinit();
     const allocator = arena.allocator();
 
-    const state = initialize_state(&allocator);
+    var state = initialize_state(allocator);
     defer state.deinit();
 
-    while (!is_over(state)) {
-        print("we here!\n", .{});
-        move(state);
+    while (!is_over(&state)) {
+        move(&state);
     }
 }
