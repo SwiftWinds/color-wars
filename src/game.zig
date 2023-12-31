@@ -62,6 +62,8 @@ fn coords_owner(coords: *const models.Coords, state: *models.State) ?u1 {
 pub fn run_move(state: *models.State, pos: u5) void {
     const player_idx = @intFromEnum(state.current_player);
     const opponent_idx = player_idx ^ 1;
+    const opponent: models.Player = @enumFromInt(opponent_idx);
+    defer state.current_player = opponent;
     const coords = coords_utils.pos_to_coords(pos);
     if (coords_owner(coords, state) == null) {
         add_coords(coords, 3, player_idx, state);
