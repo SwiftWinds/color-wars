@@ -40,7 +40,7 @@ fn is_legal_pos(state: *const models.State, coords: models.Coords) bool {
         return false;
     }
     const pos = coords.row * BOARD_SIZE + coords.col;
-    if (has_moved(state.current_player, state)) {
+    if (!has_moved(state.current_player, state)) {
         return state.pos_to_idx[pos] == null or state.pos_to_idx[pos].?.owner == state.current_player; // we can use .? confidently because short-circuiting
     }
     return state.pos_to_idx[pos] != null and state.pos_to_idx[pos].?.owner == state.current_player; // we can use .? confidently because short-circuiting
